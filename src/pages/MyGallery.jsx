@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
+
 
 export default function MyGallery() {
   const [gallery, setGallery] = useState([]);
@@ -39,9 +41,9 @@ export default function MyGallery() {
 
               {/* 🔹 ปุ่ม Actions */}
               <div className="mt-3 flex justify-between">
-                <button className="border border-white px-3 py-1 text-sm">
+                <Link to={`/artpiece/${art.objectID}`} className="border border-white px-3 py-1 text-sm">
                   👁 View
-                </button>
+                </Link>
                 <button
                   className="border border-red-500 px-3 py-1 text-sm text-red-500"
                   onClick={() => removeFromGallery(art.objectID)}

@@ -15,6 +15,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/my-gallery" element={<MyGallery />} />
+      <Route path="/artpiece/:id" element={<ArtPieceDetail />} />
     </Routes>
   </Router>
 );

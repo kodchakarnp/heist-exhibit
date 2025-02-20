@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import SearchBox from "../api/SearchBox";  // 👈 นำเข้า Component
+import { Link } from "react-router-dom";
+
 
 export default function ExploreArt() {
   const [artworks, setArtworks] = useState([]);
@@ -22,7 +24,7 @@ export default function ExploreArt() {
       `https://collectionapi.metmuseum.org/public/collection/v1/search?q=${keyword}`
     );
     const data = await response.json();
-    
+
     if (data.objectIDs) {
       const artDetails = await Promise.all(
         data.objectIDs.slice((pageNum - 1) * 9, pageNum * 9).map(async (id) => {
@@ -47,15 +49,15 @@ export default function ExploreArt() {
     fetchArtworks(query || getRandomKeyword(), page + 1);
   };
 
-    // 🔹 ฟังก์ชันขโมยภาพ (บันทึกลง localStorage)
-    const stealArtwork = (art) => {
-        const currentGallery = JSON.parse(localStorage.getItem("myGallery")) || [];
-        if (!currentGallery.some(item => item.objectID === art.objectID)) {
-          const updatedGallery = [...currentGallery, art];
-          localStorage.setItem("myGallery", JSON.stringify(updatedGallery));
-        }
-      };
-      
+  // 🔹 ฟังก์ชันขโมยภาพ (บันทึกลง localStorage)
+  const stealArtwork = (art) => {
+    const currentGallery = JSON.parse(localStorage.getItem("myGallery")) || [];
+    if (!currentGallery.some(item => item.objectID === art.objectID)) {
+      const updatedGallery = [...currentGallery, art];
+      localStorage.setItem("myGallery", JSON.stringify(updatedGallery));
+    }
+  };
+
   return (
     <section className="w-full bg-black text-white py-16">
       <div className="text-center mb-6">
@@ -75,12 +77,12 @@ export default function ExploreArt() {
             ></div>
             <h3 className="mt-3 text-lg font-semibold">{art.title || "Unknown Title"}</h3>
             <p className="text-gray-400">{art.objectDate || "Unknown Year"}</p>
-            
+
             {/* 🔹 ปุ่ม Actions */}
             <div className="mt-3 flex justify-between">
-              <button className="border border-white px-3 py-1 text-sm">
+              <Link to={`/artpiece/${art.objectID}`} className="border border-white px-3 py-1 text-sm">
                 👁 View
-              </button>
+              </Link>
               <button
                 className="border border-green-400 px-3 py-1 text-sm text-green-400"
                 onClick={() => stealArtwork(art)}
