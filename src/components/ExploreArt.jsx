@@ -68,7 +68,7 @@ export default function ExploreArt() {
       <SearchBox query={query} setQuery={setQuery} handleSearch={handleSearch} />
 
       {/* 🔹 แสดง Grid ภาพศิลปะ */}
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
+      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
         {artworks.map((art, index) => (
           <div key={index} className="bg-gray-900 p-4 rounded-lg">
             <div
