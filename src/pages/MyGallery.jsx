@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 
 
@@ -20,51 +19,52 @@ export default function MyGallery() {
   };
 
   return (
-    <section className="w-full bg-black text-white py-16">
-      {/* 🔹 Header */}
-      <div className="text-center mb-6">
-        <img src="./images/mygallery_monalisa.png" alt="Mona Lisa" className="mx-auto h-32" />
-        <h2 className="text-4xl font-bold mt-4">MY GALLERY</h2>
-      </div>
+    <section className="min-h-screen w-full flex flex-col justify-start py-16 bg-black">
+      <div className="h-full w-full flex flex-col justify-start">
+        {/* 🔹 Header */}
+        <div className="text-center mb-6">
+          <img src="./images/mygallery_monalisa.png" alt="Mona Lisa" className="mx-auto" />
+          <h2 className="text-4xl font-space-grotesk font-bold mt-4">MY GALLERY</h2>
+        </div>
 
-      {/* 🔹 แสดงรูปภาพ */}
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
-        {gallery.length > 0 ? (
-          gallery.map((art) => (
-            <div key={art.objectID} className="bg-gray-900 p-4 rounded-lg">
-              <div
-                className="w-full h-56 bg-cover bg-center rounded-lg"
-                style={{ backgroundImage: `url(${art.primaryImageSmall || "/placeholder.jpg"})` }}
-              ></div>
-              <h3 className="mt-3 text-lg font-semibold">{art.title || "Unknown Title"}</h3>
-              <p className="text-gray-400">{art.objectDate || "Unknown Year"}</p>
+        {/* 🔹 แสดงรูปภาพ */}
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
+          {gallery.length > 0 ? (
+            gallery.map((art) => (
+              <div key={art.objectID} className="bg-gray-900 p-4 rounded-lg">
+                <div
+                  className="w-full h-56 bg-cover bg-center rounded-lg"
+                  style={{ backgroundImage: `url(${art.primaryImageSmall || "/placeholder.jpg"})` }}
+                ></div>
+                <h3 className="mt-3 text-lg font-semibold">{art.title || "Unknown Title"}</h3>
+                <p className="text-gray-400">{art.objectDate || "Unknown Year"}</p>
 
-              {/* 🔹 ปุ่ม Actions */}
-              <div className="mt-3 flex justify-between">
-                <Link to={`/artpiece/${art.objectID}`} className="border border-white px-3 py-1 text-sm">
-                  👁 View
-                </Link>
-                <button
-                  className="border border-red-500 px-3 py-1 text-sm text-red-500"
-                  onClick={() => removeFromGallery(art.objectID)}
-                >
-                  ❌ Remove
-                </button>
+                {/* 🔹 ปุ่ม Actions */}
+                <div className="mt-3 flex justify-between">
+                  <Link to={`/artpiece/${art.objectID}`} className="border border-white px-3 py-1 text-sm">
+                    👁 View
+                  </Link>
+                  <button
+                    className="border border-red-500 px-3 py-1 text-sm text-red-500"
+                    onClick={() => removeFromGallery(art.objectID)}
+                  >
+                    ❌ Remove
+                  </button>
+                </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <p className="text-center col-span-3 text-gray-500">No stolen artworks yet...</p>
-        )}
-      </div>
+            ))
+          ) : (
+            <p className="text-center col-span-3 text-gray-500">No stolen artworks yet...</p>
+          )}
+        </div>
 
-      {/* 🔹 ปุ่ม Show More (ยังไม่ทำงานจริง แต่สามารถเพิ่มฟังก์ชันได้ภายหลัง) */}
-      <div className="text-center mt-8">
-        <button className="border border-white px-6 py-2 text-sm">
-          Show more
-        </button>
+        {/* ปุ่ม Show More (ยังไม่ทำงานจริง แต่สามารถเพิ่มฟังก์ชันได้ภายหลัง) */}
+        <div className="text-center mt-8">
+          <button className="border border-white px-6 py-2 text-sm">
+            Show more
+          </button>
+        </div>
       </div>
-      {/* <Footer/> */}
     </section>
   );
 }

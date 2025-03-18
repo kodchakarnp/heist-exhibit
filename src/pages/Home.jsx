@@ -6,13 +6,14 @@ import ExploreArt from "../components/ExploreArt"
 
 export default function Home() {
     return (
-        <div className="w-full">
+        // <div className="w-full">
+        // <div className="h-full w-full flex items-center justify-center">
+        <div className="h-full w-full flex flex-col">
             <HeroBanner />
+            <div className="flex justify-center items-center h-screen bg-gray-900">
+            </div>
             <Instruction />
             <ExploreArt />
-            <div className="text-center">
-                Hello! It's Home
-            </div>
         </div>
     )
 }

@@ -8,16 +8,16 @@ export default function ExploreArt() {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
 
-  // 🔹 คีย์เวิร์ดยอดนิยม
+  // 🍄 คีย์เวิร์ดยอดนิยม
   const popularKeywords = ["Van Gogh", "Leonardo da Vinci", "Monet", "Picasso", "Rembrandt"];
-
-  useEffect(() => {
-    fetchArtworks(getRandomKeyword());
-  }, []);
 
   function getRandomKeyword() {
     return popularKeywords[Math.floor(Math.random() * popularKeywords.length)];
   }
+
+  useEffect(() => {
+    fetchArtworks(getRandomKeyword());
+  }, []);
 
   async function fetchArtworks(keyword, pageNum = 1) {
     const response = await fetch(
@@ -61,7 +61,7 @@ export default function ExploreArt() {
   return (
     <section className="w-full bg-black text-white py-16">
       <div className="text-center mb-6">
-        <h2 className="text-4xl font-bold text-green-400">EXPLORE</h2>
+        <h2 className="text-4xl font-space-grotesk font-bold text-green-400">EXPLORE</h2>
       </div>
 
       {/* 🔹 ใช้ SearchBox Component */}
@@ -70,21 +70,21 @@ export default function ExploreArt() {
       {/* 🔹 แสดง Grid ภาพศิลปะ */}
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
         {artworks.map((art, index) => (
-          <div key={index} className="bg-gray-900 p-4 rounded-lg">
+          <div key={index} className="bg-gray-900 p-4 flex flex-col gap-2 text-white">
             <div
-              className="w-full h-56 bg-cover bg-center rounded-lg"
+              className="w-full h-56 bg-cover bg-center rounded-lg flex justify-center"
               style={{ backgroundImage: `url(${art.primaryImageSmall || "/placeholder.jpg"})` }}
             ></div>
-            <h3 className="mt-3 text-lg font-semibold">{art.title || "Unknown Title"}</h3>
-            <p className="text-gray-400">{art.objectDate || "Unknown Year"}</p>
+            <h3 className="mt-3 text-lg font-PlusJakartaSans font-semibold flex justify-start text-left truncate-multi">{art.title || "Unknown Title"}</h3>
+            <p className="text-gray-400 font-PlusJakartaSans flex justify-start">{art.objectDate || "Unknown Year"}</p>
 
             {/* 🔹 ปุ่ม Actions */}
-            <div className="mt-3 flex justify-between">
-              <Link to={`/artpiece/${art.objectID}`} className="border border-white px-3 py-1 text-sm">
+            <div className="flex gap-3 justify-center mt-0">
+              <Link to={`/artpiece/${art.objectID}`} className="border border-[#F6E9DE] px-3 py-1 text-sm text-[#F6E9DE] font-PlusJakartaSans mt-8">
                 👁 View
               </Link>
               <button
-                className="border border-green-400 px-3 py-1 text-sm text-green-400"
+                className="border border-green-400 px-3 py-1 text-sm text-[#F6E9DE] font-PlusJakartaSans mt-8"
                 onClick={() => stealArtwork(art)}
               >
                 Take it

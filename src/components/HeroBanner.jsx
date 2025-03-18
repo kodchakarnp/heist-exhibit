@@ -12,8 +12,8 @@ export default function HeroBanner() {
   
         {/* เนื้อหา */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-6">
-          <h1 className="text-5xl md:text-6xl font-bold text-green-400 mt-120">
-            THE HEIST EXHIBIT
+          <h1 className="text-5xl md:text-6xl font-bold font-space-grotesk text-green-400 mt-120">
+            THE HEIST EXHIBITION
           </h1>
           <p className="mt-4 text-lg max-w-2xl">
             Explore art treasures from classical to contemporary, then become an art thief while the guard sneaks off to the bathroom for 60 seconds. Which masterpieces will you snatch?
