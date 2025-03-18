@@ -2,7 +2,7 @@ export default function Instruction() {
     return (
       <section className="w-full bg-black text-white py-16">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-semibold">How to steal the artpiece</h2>
+          <h2 className="text-3xl font-space-grotesk font-semibold">How to steal the artpiece</h2>
         </div>
   
         {/* 🔹 กริดรูปภาพ + คำอธิบาย */}

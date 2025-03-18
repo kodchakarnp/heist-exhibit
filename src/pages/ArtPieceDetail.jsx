@@ -16,7 +16,7 @@ export default function ArtPieceDetail() {
   }
 
   return (
-    <section className="w-full bg-black text-white py-16 flex flex-col items-center">
+    <section className="h-full w-full flex items-center justify-center flex-col bg-black">
       <img src={artpiece.primaryImage || "/placeholder.jpg"} alt={artpiece.title} className="w-[50%] max-w-xl" />
       
       <h2 className="text-3xl font-bold mt-6">{artpiece.title || "Unknown Title"}</h2>
