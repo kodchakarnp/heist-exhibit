@@ -10,8 +10,6 @@ export default function Home() {
         // <div className="h-full w-full flex items-center justify-center">
         <div className="h-full w-full flex flex-col">
             <HeroBanner />
-            <div className="flex justify-center items-center h-screen bg-gray-900">
-            </div>
             <Instruction />
             <ExploreArt />
         </div>

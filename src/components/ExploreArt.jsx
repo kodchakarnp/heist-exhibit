@@ -15,19 +15,14 @@ export default function ExploreArt() {
     return popularKeywords[Math.floor(Math.random() * popularKeywords.length)];
   }
 
-  useEffect(() => {
-    fetchArtworks(getRandomKeyword());
-  }, []);
-
-  async function fetchArtworks(keyword, pageNum = 1) {
+  async function fetchArtworks(keyword, currentPage = 1) {
     const response = await fetch(
       `https://collectionapi.metmuseum.org/public/collection/v1/search?q=${keyword}`
     );
     const data = await response.json();
-
     if (data.objectIDs) {
       const artDetails = await Promise.all(
-        data.objectIDs.slice((pageNum - 1) * 9, pageNum * 9).map(async (id) => {
+        data.objectIDs.slice((currentPage - 1) * 9, currentPage * 9).map(async (id) => {
           const res = await fetch(
             `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`
           );
@@ -35,9 +30,21 @@ export default function ExploreArt() {
         })
       );
 
-      setArtworks(pageNum === 1 ? artDetails : [...artworks, ...artDetails]);
+      setArtworks(currentPage === 1 ? artDetails : [...artworks, ...artDetails]);
     }
   }
+
+  // Initial load
+  useEffect(() => {
+    fetchArtworks(getRandomKeyword());
+  }, []);
+
+  // Handle page changes
+  useEffect(() => {
+    if (page > 1) {
+      fetchArtworks(query || getRandomKeyword(), page);
+    }
+  }, [page]);
 
   const handleSearch = () => {
     setPage(1);
@@ -45,8 +52,7 @@ export default function ExploreArt() {
   };
 
   const handleShowMore = () => {
-    setPage((prev) => prev + 1);
-    fetchArtworks(query || getRandomKeyword(), page + 1);
+    setPage(prev => prev + 1);
   };
 
   // 🔹 ฟังก์ชันขโมยภาพ (บันทึกลง localStorage)
