@@ -12,7 +12,7 @@ export default function HeroBanner() {
   
         {/* เนื้อหา */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-6">
-          <h1 className="text-5xl md:text-6xl font-bold font-space-grotesk text-green-400 mt-120">
+          <h1 className="text-5xl md:text-6xl font-bold font-space-grotesk text-green-400 mt-160">
             THE HEIST EXHIBITION
           </h1>
           <p className="mt-4 text-lg max-w-2xl">

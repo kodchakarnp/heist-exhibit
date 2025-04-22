@@ -57,9 +57,13 @@ export default function ExploreArt() {
 
   // 🔹 ฟังก์ชันขโมยภาพ (บันทึกลง localStorage)
   const stealArtwork = (art) => {
+      // 1. Get current gallery from localStorage
     const currentGallery = JSON.parse(localStorage.getItem("myGallery")) || [];
+      // 2. Check if artwork already exists 
     if (!currentGallery.some(item => item.objectID === art.objectID)) {
+      // 3. Add artwork to gallery
       const updatedGallery = [...currentGallery, art];
+      // 4. Save updated gallery to localStorage
       localStorage.setItem("myGallery", JSON.stringify(updatedGallery));
     }
   };
@@ -75,8 +79,8 @@ export default function ExploreArt() {
 
       {/* 🔹 แสดง Grid ภาพศิลปะ */}
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
-        {artworks.map((art, index) => (
-          <div key={index} className="bg-gray-900 p-4 flex flex-col gap-2 text-white">
+        {artworks.map((art) => (
+          <div key={art.objectID} className="bg-gray-900 p-4 flex flex-col gap-2 text-white">
             <div
               className="w-full h-56 bg-cover bg-center rounded-lg flex justify-center"
               style={{ backgroundImage: `url(${art.primaryImageSmall || "/placeholder.jpg"})` }}
