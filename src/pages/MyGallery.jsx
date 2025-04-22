@@ -58,12 +58,6 @@ export default function MyGallery() {
           )}
         </div>
 
-        {/* ปุ่ม Show More (ยังไม่ทำงานจริง แต่สามารถเพิ่มฟังก์ชันได้ภายหลัง) */}
-        <div className="text-center mt-8">
-          <button className="border border-white px-6 py-2 text-sm">
-            Show more
-          </button>
-        </div>
       </div>
     </section>
   );

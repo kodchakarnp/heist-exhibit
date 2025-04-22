@@ -15,19 +15,14 @@ export default function ExploreArt() {
     return popularKeywords[Math.floor(Math.random() * popularKeywords.length)];
   }
 
-  useEffect(() => {
-    fetchArtworks(getRandomKeyword());
-  }, []);
-
-  async function fetchArtworks(keyword, pageNum = 1) {
+  async function fetchArtworks(keyword, currentPage = 1) {
     const response = await fetch(
       `https://collectionapi.metmuseum.org/public/collection/v1/search?q=${keyword}`
     );
     const data = await response.json();
-
     if (data.objectIDs) {
       const artDetails = await Promise.all(
-        data.objectIDs.slice((pageNum - 1) * 9, pageNum * 9).map(async (id) => {
+        data.objectIDs.slice((currentPage - 1) * 9, currentPage * 9).map(async (id) => {
           const res = await fetch(
             `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`
           );
@@ -35,9 +30,21 @@ export default function ExploreArt() {
         })
       );
 
-      setArtworks(pageNum === 1 ? artDetails : [...artworks, ...artDetails]);
+      setArtworks(currentPage === 1 ? artDetails : [...artworks, ...artDetails]);
     }
   }
+
+  // Initial load
+  useEffect(() => {
+    fetchArtworks(getRandomKeyword());
+  }, []);
+
+  // Handle page changes
+  useEffect(() => {
+    if (page > 1) {
+      fetchArtworks(query || getRandomKeyword(), page);
+    }
+  }, [page]);
 
   const handleSearch = () => {
     setPage(1);
@@ -45,15 +52,18 @@ export default function ExploreArt() {
   };
 
   const handleShowMore = () => {
-    setPage((prev) => prev + 1);
-    fetchArtworks(query || getRandomKeyword(), page + 1);
+    setPage(prev => prev + 1);
   };
 
   // 🔹 ฟังก์ชันขโมยภาพ (บันทึกลง localStorage)
   const stealArtwork = (art) => {
+      // 1. Get current gallery from localStorage
     const currentGallery = JSON.parse(localStorage.getItem("myGallery")) || [];
+      // 2. Check if artwork already exists 
     if (!currentGallery.some(item => item.objectID === art.objectID)) {
+      // 3. Add artwork to gallery
       const updatedGallery = [...currentGallery, art];
+      // 4. Save updated gallery to localStorage
       localStorage.setItem("myGallery", JSON.stringify(updatedGallery));
     }
   };
@@ -69,8 +79,8 @@ export default function ExploreArt() {
 
       {/* 🔹 แสดง Grid ภาพศิลปะ */}
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
-        {artworks.map((art, index) => (
-          <div key={index} className="bg-gray-900 p-4 flex flex-col gap-2 text-white">
+        {artworks.map((art) => (
+          <div key={art.objectID} className="bg-gray-900 p-4 flex flex-col gap-2 text-white">
             <div
               className="w-full h-56 bg-cover bg-center rounded-lg flex justify-center"
               style={{ backgroundImage: `url(${art.primaryImageSmall || "/placeholder.jpg"})` }}
