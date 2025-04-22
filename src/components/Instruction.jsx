@@ -11,7 +11,7 @@ export default function Instruction() {
           {/* 🔸 Step 1 */}
           <div className="flex flex-col items-center text-center">
             <div className="w-60 h-60 bg-cover bg-center rounded-full" 
-                 style={{ backgroundImage: "url('/images/instruction_01.png')" }}>
+                 style={{ backgroundImage: "url('./images/instruction_01.png')" }}>
             </div>
             <p className="mt-4 max-w-sm text-gray-300">
               Every hour on the dot (e.g., 1:00 PM, 8:00 AM), the guards take a bathroom break for 
@@ -22,7 +22,7 @@ export default function Instruction() {
           {/* 🔸 Step 2 */}
           <div className="flex flex-col items-center text-center">
             <div className="w-60 h-60 bg-cover bg-center rounded-full" 
-                 style={{ backgroundImage: "url('/images/instruction_02.png')" }}>
+                 style={{ backgroundImage: "url('./images/instruction_02.png')" }}>
             </div>
             <p className="mt-4 max-w-sm text-gray-300">
               During the break time, You can "steal" artworks to add to your personal gallery by clicking the 
@@ -33,7 +33,7 @@ export default function Instruction() {
           {/* 🔸 Step 3 */}
           <div className="flex flex-col items-center text-center">
             <div className="w-60 h-60 bg-cover bg-center rounded-full" 
-                 style={{ backgroundImage: "url('/images/instruction_03.png')" }}>
+                 style={{ backgroundImage: "url('./images/instruction_03.png')" }}>
             </div>
             <p className="mt-4 max-w-sm text-gray-300">
               If you steal artwork outside the Break Time (e.g., 1:01 PM or 7:59 AM), the system will catch you! 
