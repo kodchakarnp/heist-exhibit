@@ -1,18 +1,15 @@
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import './App.css'
-import Home from './pages/Home'
-import MyGallery from './pages/MyGallery'
-import ArtPieceDetail from './pages/ArtPieceDetail'
-import Header from './components/Header';
-import Footer from './components/Footer';
-
+import "./App.css";
+import Home from "./pages/Home";
+import MyGallery from "./pages/MyGallery";
+import ArtPieceDetail from "./pages/ArtPieceDetail";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
-
   return (
-    <div className='min-h-screen w-full flex flex-col text-white'>
-      <Router>
+    <div className="min-h-screen w-full flex flex-col text-white">
+      <Router basename={import.meta.env.DEV ? "/" : "/heist-exhibit/"}>
         <main className="flex-1 w-full">
           <Header />
           <Routes>
@@ -20,19 +17,11 @@ function App() {
             <Route path="/my-gallery" element={<MyGallery />} />
             <Route path="/artpiece/:id" element={<ArtPieceDetail />} />
           </Routes>
-          < Footer />
+          <Footer />
         </main>
       </Router>
     </div>
   );
-  //   <div className='w-full min-h-screen bg-blue-600'>
-  //     <Header />
-  //     {/* HellooooooooooooooHellooooooooooooooHellooooooooooooooHellooooooooooooooHellooooooooooooooHellooooooooooooooHellooooooooooooooHelloooooooooooooo */}
-  //     < Home />
-  //     {/* < MyGallery /> */}
-  //     {/* <ArtPieceDetail/> */}
-  //   </div>
-  // )
 }
 
-export default App
+export default App;
