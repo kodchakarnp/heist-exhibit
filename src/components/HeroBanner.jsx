@@ -4,9 +4,8 @@ export default function HeroBanner() {
         {/* ภาพพื้นหลัง */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/images/monalisa_banner.jpg')" }} // เปลี่ยน URL เป็นรูปของคุณ
+          style={{ backgroundImage: "url('./images/monalisa_banner.jpg')" }}
         >
-          {/* Overlay ไล่สีดำเพื่อให้อ่านง่ายขึ้น */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
         </div>
   
